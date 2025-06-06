@@ -1,0 +1,30 @@
+import java.io.Console;
+
+public class LoginSystem {
+    public static void main(String[] args) {
+        Console console = System.console();
+
+        if (console == null) {
+            System.out.println("Console unavailable. Run this in a terminal.");
+            return;
+        }
+
+        String correctUsername = "admin";
+        String correctPassword = "pass123";
+
+        for (int i = 0; i < 3; i++) {
+            String username = console.readLine("Enter username: ");
+            char[] passwordChars = console.readPassword("Enter password: ");
+            String password = new String(passwordChars);
+
+            if (username.equals(correctUsername) && password.equals(correctPassword)) {
+                System.out.println("Login successful!");
+                return;
+            } else {
+                System.out.println("Incorrect credentials. Attempts left: " + (2 - i));
+            }
+        }
+
+        System.out.println("Access denied.");
+    }
+}
